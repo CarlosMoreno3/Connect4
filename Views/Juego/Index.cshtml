@@ -1,0 +1,94 @@
+@model Juego
+@{
+    ViewData["Title"] = "Connect 4";
+    var filas = Model.Filas;
+    var columnas = Model.Columnas;
+}
+<div class="d-flex flex-column align-items-center justify-content-center bg-light">
+    <p>Turno del jugador:@Model.JugadorActual</p>
+    <form asp-action="Reset" method="post">
+        <button type="submit" class="btn btn-primary mb-3">Reiniciar Partida</button>
+    </form>
+    <table class="table table-bordered text-center shadow" style="width: auto;">
+        <thead>
+            <tr>
+                @for (int c = 0; c < columnas; c++)
+                {
+                    var letra = (char)('A' + c);
+                    bool columnaLlena = Model.ColumnaLlena(c);
+                    <th>
+                        <form asp-action="InsertarFicha" method="post">
+                            <input type="hidden" name="columna" value="@c" />
+                            <button class="btn btn-primary btn-sm" 
+                                    @(Model.GameOver || columnaLlena ? "disabled" : "")>
+                                @letra
+                            </button>
+                        </form>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int f = 0; f < filas; f++)
+            {
+                <tr>
+                    @for (int c = 0; c < columnas; c++)
+                    {
+                        int cell = Model.Tablero[f, c];
+                        string color = cell == 1 ? "red" : cell == 2 ? "yellow" : "white";
+                        <td style="background-color:@color; width: 70px; height: 70px; border-radius: 50%;"></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (Model.GameOver)
+    {
+        @if (Model.Winner > 0)
+        {
+            <div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="winnerModalLabel">¡Felicidades!</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            ¡Victoria del jugador @Model.Winner!
+                        </div>
+                        <div class="modal-footer">
+                            <form asp-action="Reset" method="post">
+                                <button type="submit" class="btn btn-primary">Jugar Nuevamente</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="winnerModalLabel">¡Empate!</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            ¡Ambos jugadores han gastado la totalidad de sus fichas!
+                        </div>
+                        <div class="modal-footer">
+                            <form asp-action="Reset" method="post">
+                                <button type="submit" class="btn btn-primary">Jugar Nuevamente</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'));
+                winnerModal.show();
+            });
+        </script>
+    }
+</div>
