@@ -34,3 +34,40 @@ C:\Users\melan\OneDrive - Universidad Fidélitas\Documentos\UNIVERSIDAD\2025 2DO
 C:\Users\melan\OneDrive - Universidad Fidélitas\Documentos\UNIVERSIDAD\2025 2DO CUATRI\Programacion Avanzada en Web\Programas\proyecto\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\melan\OneDrive - Universidad Fidélitas\Documentos\UNIVERSIDAD\2025 2DO CUATRI\Programacion Avanzada en Web\Programas\proyecto\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\melan\OneDrive - Universidad Fidélitas\Documentos\UNIVERSIDAD\2025 2DO CUATRI\Programacion Avanzada en Web\Programas\proyecto\obj\Debug\net8.0\Proyecto.csproj.Up2Date
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\appsettings.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.staticwebassets.runtime.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.exe
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.deps.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.runtimeconfig.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Proyecto.pdb
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.csproj.AssemblyReference.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.AssemblyInfoInputs.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.AssemblyInfo.cs
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.csproj.CoreCompileInputs.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.RazorAssemblyInfo.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.RazorAssemblyInfo.cs
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.sourcelink.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets\msbuild.Proyecto.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets\msbuild.build.Proyecto.props
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Proyecto.props
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Proyecto.props
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\scopedcss\bundle\Proyecto.styles.css
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\scopedcss\projectbundle\Proyecto.bundle.scp.css
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.csproj.Up2Date
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\refint\Proyecto.dll
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.pdb
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\Proyecto.genruntimeconfig.cache
+C:\Users\melan\OneDrive\ETC\GitHub\Connect4\obj\Debug\net8.0\ref\Proyecto.dll

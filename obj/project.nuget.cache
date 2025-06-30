@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pYeuM3NdCGY=",
+  "dgSpecHash": "F0P3s5wReEo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\melan\\OneDrive - Universidad Fidélitas\\Documentos\\UNIVERSIDAD\\2025 2DO CUATRI\\Programacion Avanzada en Web\\Programas\\proyecto\\Proyecto.csproj",
+  "projectFilePath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\melan\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\8.0.4\\microsoft.aspnetcore.jsonpatch.8.0.4.nupkg.sha512",
     "C:\\Users\\melan\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\8.0.4\\microsoft.aspnetcore.mvc.newtonsoftjson.8.0.4.nupkg.sha512",

@@ -248,11 +248,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\melan\\OneDrive - Universidad Fidélitas\\Documentos\\UNIVERSIDAD\\2025 2DO CUATRI\\Programacion Avanzada en Web\\Programas\\proyecto\\Proyecto.csproj",
-      "projectName": "Proyecto",
-      "projectPath": "C:\\Users\\melan\\OneDrive - Universidad Fidélitas\\Documentos\\UNIVERSIDAD\\2025 2DO CUATRI\\Programacion Avanzada en Web\\Programas\\proyecto\\Proyecto.csproj",
+      "projectUniqueName": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
+      "projectName": "Connect4",
+      "projectPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
       "packagesPath": "C:\\Users\\melan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\melan\\OneDrive - Universidad Fidélitas\\Documentos\\UNIVERSIDAD\\2025 2DO CUATRI\\Programacion Avanzada en Web\\Programas\\proyecto\\obj\\",
+      "outputPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\melan\\AppData\\Roaming\\NuGet\\NuGet.Config"

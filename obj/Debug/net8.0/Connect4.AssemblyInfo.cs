@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Proyecto")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Connect4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20c5fc89f6e8032a22d5be133529e363c8908388")]
-[assembly: System.Reflection.AssemblyProductAttribute("Proyecto")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Proyecto")]
+[assembly: System.Reflection.AssemblyProductAttribute("Connect4")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Connect4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
