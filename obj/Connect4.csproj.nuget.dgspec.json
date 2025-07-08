@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj": {}
+    "C:\\Users\\jpbre\\Documents\\pablo\\universidad\\Connect4\\Connect4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj": {
+    "C:\\Users\\jpbre\\Documents\\pablo\\universidad\\Connect4\\Connect4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj",
+        "projectUniqueName": "C:\\Users\\jpbre\\Documents\\pablo\\universidad\\Connect4\\Connect4.csproj",
         "projectName": "Connect4",
-        "projectPath": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj",
-        "packagesPath": "C:\\Users\\cadam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\obj\\",
+        "projectPath": "C:\\Users\\jpbre\\Documents\\pablo\\universidad\\Connect4\\Connect4.csproj",
+        "packagesPath": "C:\\Users\\jpbre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jpbre\\Documents\\pablo\\universidad\\Connect4\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\cadam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jpbre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,7 +44,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -49,10 +54,6 @@
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[8.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -80,6 +81,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -88,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
