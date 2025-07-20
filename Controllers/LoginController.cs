@@ -1,7 +1,7 @@
 using Connect4.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Connect4.Data; // Asegúrate de que este sea tu namespace real
+using Connect4.Data; 
 
 namespace Connect4.Controllers
 {
@@ -23,6 +23,7 @@ namespace Connect4.Controllers
         [HttpPost]
         public IActionResult Index(LoginModel model)
         {
+            /*
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -37,8 +38,8 @@ namespace Connect4.Controllers
             }
 
             // Aquí podrías guardar sesión, cookie, etc.
-            // Por ahora redireccionamos a una página de bienvenida
-            return RedirectToAction("Bienvenido", "Home");
+            // Por ahora redireccionamos a una página de bienvenida*/
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -1,0 +1,38 @@
+@model List<Connect4.Models.Partida>
+
+@{
+    ViewData["Title"] = "Cargar Partida";
+}
+
+<h2>Cargar Partida</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Jugador 1</th>
+            <th>Jugador 2</th>
+            <th>Turno</th>
+            <th>Fecha de Creación</th>
+            <th>Cargar</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var partida in Model)
+    {
+        <tr>
+            <td>@(partida.Jugador1 != null ? partida.Jugador1.Nombre + " " + partida.Jugador1.Apellido : "Desconocido")</td>
+            <td>@(partida.Jugador2 != null ? partida.Jugador2.Nombre + " " + partida.Jugador2.Apellido : "Desconocido")</td>
+            <td>@(partida.Jugador1 != null && partida.TurnoActual == partida.Jugador1.Id
+                    ? partida.Jugador1.Nombre + " " + partida.Jugador1.Apellido
+                    : partida.Jugador2 != null && partida.TurnoActual == partida.Jugador2.Id
+                        ? partida.Jugador2.Nombre + " " + partida.Jugador2.Apellido
+                        : "Desconocido")
+            </td>
+            <td>@partida.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>
+                <a asp-action="Continuar" asp-route-id="@partida.Id" class="btn btn-primary">Cargar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,11 +1,18 @@
 @model Juego
 @{
     ViewData["Title"] = "Connect 4";
+    if (Model == null)
+    {
+        <p>Error: Modelo nulo.</p>
+        return;
+    }
     var filas = Model.Filas;
     var columnas = Model.Columnas;
 }
 <div class="d-flex flex-column align-items-center justify-content-center bg-light">
-    <p>Turno del jugador:@Model.JugadorActual</p>
+    <p>Turno del jugador: @Model.JugadorActual</p>
+    <p>Jugador 1: @Model.NombreJugador1</p>
+    <p>Jugador 2: @Model.NombreJugador2</p>
     <form asp-action="Reset" method="post">
         <button type="submit" class="btn btn-primary mb-3">Reiniciar Partida</button>
     </form>
@@ -17,7 +24,7 @@
                     var letra = (char)('A' + c);
                     bool columnaLlena = Model.ColumnaLlena(c);
                     <th>
-                        <form asp-action="InsertarFicha" method="post">
+                        <form asp-action="InsertarFicha" asp-route-id="@Model.IdPartida" method="post">
                             <input type="hidden" name="columna" value="@c" />
                             <button class="btn btn-primary btn-sm" 
                                     @(Model.GameOver || columnaLlena ? "disabled" : "")>

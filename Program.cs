@@ -12,7 +12,6 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddSession(); 
 builder.Services.AddHttpContextAccessor();
 
-// Configurar Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

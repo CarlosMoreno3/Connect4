@@ -20,16 +20,6 @@ namespace Connect4.Models
         [Column("apellido")]
         public string Apellido { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(100)]
-        [Column("correo")]
-        public string Correo { get; set; } = string.Empty;
-
-        [Required]
-        [StringLength(255)]
-        [Column("contrasena")]
-        public string Contrasena { get; set; } = string.Empty;
-
         [Column("partidas_ganadas")]
         public int PartidasGanadas { get; set; } = 0;
 
@@ -45,6 +35,7 @@ namespace Connect4.Models
 
         [Column("fecha_creacion")]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
+
     }
 
     [Table("partidas")]
@@ -79,6 +70,11 @@ namespace Connect4.Models
         [Column("fecha_finalizacion")]
         public DateTime? FechaFinalizacion { get; set; }
 
+        public virtual Jugador? Jugador1 { get; set; }
+        public virtual Jugador? Jugador2 { get; set; }
+
+        public ICollection<Movimiento>? Movimientos { get; set; }
+
     }
 
     [Table("movimientos")]
@@ -108,9 +104,6 @@ namespace Connect4.Models
         [Required]
         [Column("orden_movimiento")]
         public int OrdenMovimiento { get; set; }
-
-        [Column("fecha_movimiento")]
-        public DateTime FechaMovimiento { get; set; } = DateTime.Now;
 
     }
 }

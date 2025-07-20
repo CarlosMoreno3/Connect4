@@ -5,6 +5,7 @@ ALTER SERVER ROLE sysadmin ADD MEMBER Connect4;
 
 --Creacion de Base de Datos Connect4
 CREATE DATABASE Connect4DB;
+
 --
 USE Connect4DB;
 GO
@@ -15,19 +16,15 @@ CREATE TABLE jugadores (
     id BIGINT IDENTITY(1,1) PRIMARY KEY,
     nombre NVARCHAR(100) NOT NULL,
     apellido NVARCHAR(100) NOT NULL, 
-    correo NVARCHAR(255) NOT NULL UNIQUE,
-    contrasena NVARCHAR(255) NOT NULL,
     partidas_ganadas INT DEFAULT 0,
     partidas_perdidas INT DEFAULT 0,
     partidas_empatadas INT DEFAULT 0,
     marcador AS (partidas_ganadas - partidas_perdidas) PERSISTED,
     fecha_creacion DATETIME2 DEFAULT GETDATE(),
     
-    -- Restricciones
     CONSTRAINT chk_partidas_ganadas CHECK (partidas_ganadas >= 0),
     CONSTRAINT chk_partidas_perdidas CHECK (partidas_perdidas >= 0),
-    CONSTRAINT chk_partidas_empatadas CHECK (partidas_empatadas >= 0),
-    CONSTRAINT chk_correo_formato CHECK (correo LIKE '%@%.%') -- Validacion estructura de email
+    CONSTRAINT chk_partidas_empatadas CHECK (partidas_empatadas >= 0)
 );
 
 -- Tabla de Partidas
@@ -60,13 +57,13 @@ CREATE TABLE movimientos (
    jugador TINYINT NOT NULL CHECK (jugador IN (1, 2)),
    columna CHAR(1) NOT NULL CHECK (columna IN ('A', 'B', 'C', 'D', 'E', 'F', 'G')),
    fila TINYINT NOT NULL CHECK (fila BETWEEN 1 AND 6),
-   orden_movimiento INT NOT NULL,
-   fecha_movimiento DATETIME2 DEFAULT GETDATE(),
+   orden_movimiento INT NOT NULL
    
    -- llave foranea
    CONSTRAINT fk_movimientos_partida FOREIGN KEY (partida_id) REFERENCES partidas(id) ON DELETE CASCADE,
 );
 GO
+
 
 -- Vista para el escalafón de jugadores
 CREATE VIEW escalafon_jugadores AS

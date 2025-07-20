@@ -1,18 +1,21 @@
 public class Juego
 {
+    public int IdPartida { get; set; }
     public int Filas { get; } = 6;
     public int Columnas { get; } = 7;
     public int[,] Tablero { get; set; }
     public int JugadorActual { get; set; } = 1;
     public bool GameOver { get; set; } = false;
     public int Winner { get; set; } = 0;
+    public string? NombreJugador1 { get; set; }
+    public string? NombreJugador2 { get; set; }
 
     public Juego()
     {
         Tablero = new int[Filas, Columnas];
     }
 
-    public bool InsertarFicha(int columna)
+    public int InsertarFicha(int columna)
     {
         for (int fila = Filas - 1; fila >= 0; fila--)
         {
@@ -33,11 +36,12 @@ public class Juego
                 {
                     JugadorActual = JugadorActual == 1 ? 2 : 1;
                 }
-                return true;
+                return fila;
             }
         }
-        return false;
+        return -1;
     }
+
 
     private bool ComprobarGanador(int fila, int columna)
     {
@@ -93,4 +97,17 @@ public class Juego
     {
         return Tablero[0, columna] != 0;
     }
+
+    public void InsertarFichaDesdeBD(int columna, int jugador)
+    {
+        for (int fila = Filas - 1; fila >= 0; fila--)
+        {
+            if (Tablero[fila, columna] == 0)
+            {
+                Tablero[fila, columna] = jugador;
+                return;
+            }
+        }
+    }
+
 }
