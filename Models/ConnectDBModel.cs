@@ -35,7 +35,6 @@ namespace Connect4.Models
 
         [Column("fecha_creacion")]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
-
     }
 
     [Table("partidas")]
@@ -74,7 +73,6 @@ namespace Connect4.Models
         public virtual Jugador? Jugador2 { get; set; }
 
         public ICollection<Movimiento>? Movimientos { get; set; }
-
     }
 
     [Table("movimientos")]
@@ -104,6 +102,5 @@ namespace Connect4.Models
         [Required]
         [Column("orden_movimiento")]
         public int OrdenMovimiento { get; set; }
-
     }
 }

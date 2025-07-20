@@ -42,7 +42,6 @@ public class Juego
         return -1;
     }
 
-
     private bool ComprobarGanador(int fila, int columna)
     {
         int jugador = Tablero[fila, columna];
@@ -109,5 +108,4 @@ public class Juego
             }
         }
     }
-
 }

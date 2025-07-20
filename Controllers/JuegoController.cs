@@ -7,7 +7,6 @@ using Connect4.Models;
 public class JuegoController : Controller
 {
     private const string SessionKey = "Juego";
-
     private readonly ApplicationDbContext _context;
 
     public JuegoController(ApplicationDbContext context)
@@ -15,49 +14,20 @@ public class JuegoController : Controller
         _context = context;
     }
 
-    public IActionResult Index(int? id)
+    public IActionResult Index(int? id, bool showModal = false)
     {
         Juego juego;
 
         if (id.HasValue)
         {
-            var partida = _context.Partidas
-                .Include(p => p.Jugador1)
-                .Include(p => p.Jugador2)
-                .Include(p => p.Movimientos)
-                .FirstOrDefault(p => p.Id == id.Value);
-
-            if (partida != null)
-            {
-                juego = new Juego
-                {
-                    IdPartida = partida.Id,
-                    NombreJugador1 = partida.Jugador1?.Nombre ?? "Desconocido",
-                    NombreJugador2 = partida.Jugador2?.Nombre ?? "Desconocido",
-                    JugadorActual = partida.TurnoActual
-                };
-
-                if (partida.Movimientos != null)
-                {
-                    foreach (var movimiento in partida.Movimientos.OrderBy(m => m.OrdenMovimiento))
-                    {
-                        int col = movimiento.Columna[0] - 'A';
-                        juego.InsertarFichaDesdeBD(col, movimiento.Jugador);
-                    }
-                }
-
-                Guardar(juego);
-            }
-            else
-            {
-                juego = Abrir();
-            }
+            juego = Abrir();
         }
         else
         {
             juego = Abrir();
         }
 
+        ViewBag.ShowModal = showModal;
         return View(juego);
     }
 
@@ -79,41 +49,71 @@ public class JuegoController : Controller
 
     [HttpPost]
     [Route("Juego/InsertarFicha/{id}")]
-    public IActionResult InsertarFicha(int columna, int id)
+    public IActionResult InsertarFicha(int id, int columna)
     {
-        var juego = Abrir();
-        juego.IdPartida = id;
-        int fila = juego.InsertarFicha(columna);
-
-        if (fila == -1)
-        {
-            return RedirectToAction("Index", new { id });
-        }
-
-        Guardar(juego);
-
         var partida = _context.Partidas
             .Include(p => p.Movimientos)
-            .FirstOrDefault(p => p.Id == juego.IdPartida);
+            .Include(p => p.Jugador1)
+            .Include(p => p.Jugador2)
+            .FirstOrDefault(p => p.Id == id);
 
-        if (partida != null)
+        if (partida == null || partida.Estado == "finalizada")
+            return RedirectToAction("Index", new { id });
+
+        var juego = CargarJuegoDesdeBD(id);
+        byte jugadorQueHaceMovimiento = (byte)juego.JugadorActual;
+
+        int fila = juego.InsertarFicha(columna);
+        if (fila == -1)
+            return RedirectToAction("Index", new { id });
+
+        Guardar(juego);
+        partida.TurnoActual = (byte)juego.JugadorActual;
+
+        var movimiento = new Movimiento
         {
-            var movimiento = new Movimiento
+            PartidaId = partida.Id,
+            Columna = ((char)('A' + columna)).ToString(),
+            Fila = (byte)fila,
+            Jugador = jugadorQueHaceMovimiento,
+            OrdenMovimiento = (partida.Movimientos?.Count ?? 0) + 1
+        };
+
+        _context.Movimientos.Add(movimiento);
+
+        if (juego.GameOver)
+        {
+            partida.Estado = "finalizada";
+            partida.Resultado = juego.Winner switch
             {
-                PartidaId = partida.Id,
-                Columna = ((char)('A' + columna)).ToString(),
-                Fila = (byte)fila,
-                Jugador = (byte)(juego.JugadorActual == 1 ? 2 : 1),
-                OrdenMovimiento = (partida.Movimientos?.Count ?? 0) + 1
+                1 => "jugador1",
+                2 => "jugador2",
+                _ => "empate"
             };
+            partida.FechaFinalizacion = DateTime.Now;
 
-            _context.Movimientos.Add(movimiento);
-
-            partida.TurnoActual = (byte)juego.JugadorActual;
-            _context.SaveChanges();
+            if (partida.Jugador1 != null && partida.Jugador2 != null)
+            {
+                if (juego.Winner == 1)
+                {
+                    partida.Jugador1.PartidasGanadas++;
+                    partida.Jugador2.PartidasPerdidas++;
+                }
+                else if (juego.Winner == 2)
+                {
+                    partida.Jugador2.PartidasGanadas++;
+                    partida.Jugador1.PartidasPerdidas++;
+                }
+                else
+                {
+                    partida.Jugador1.PartidasEmpatadas++;
+                    partida.Jugador2.PartidasEmpatadas++;
+                }
+            }
         }
 
-        return RedirectToAction("Index", new { id });
+        _context.SaveChanges();
+        return RedirectToAction("Index", new { id, showModal = juego.GameOver });
     }
 
     [HttpPost]
@@ -126,6 +126,22 @@ public class JuegoController : Controller
 
     public IActionResult Continuar(int id)
     {
+        var juego = CargarJuegoDesdeBD(id);
+        Guardar(juego);
+        return RedirectToAction("Index", new { id = juego.IdPartida });
+    }
+
+    [HttpGet]
+    public IActionResult Partida(int id)
+    {
+        var juego = Abrir();
+        juego.IdPartida = id;
+        Guardar(juego);
+        return View("Index");
+    }
+    
+    private Juego CargarJuegoDesdeBD(int id)
+    {
         var partida = _context.Partidas
             .Include(p => p.Jugador1)
             .Include(p => p.Jugador2)
@@ -133,9 +149,7 @@ public class JuegoController : Controller
             .FirstOrDefault(p => p.Id == id);
 
         if (partida == null)
-        {
-            return NotFound();
-        }
+            throw new Exception("Partida no encontrada");
 
         var juego = new Juego
         {
@@ -147,25 +161,13 @@ public class JuegoController : Controller
 
         if (partida.Movimientos != null)
         {
-            foreach (var movimiento in partida.Movimientos)
+            foreach (var movimiento in partida.Movimientos.OrderBy(m => m.OrdenMovimiento))
             {
                 int col = movimiento.Columna[0] - 'A';
                 juego.InsertarFichaDesdeBD(col, movimiento.Jugador);
             }
         }
 
-        Guardar(juego);
-
-        return RedirectToAction("Index", new { id = partida.Id });
+        return juego;
     }
-    
-    [HttpGet]
-    public IActionResult Partida(int id)
-    {
-        var juego = Abrir();
-        juego.IdPartida = id;
-        Guardar(juego);
-        return View("Index");
-    }
-
 }
