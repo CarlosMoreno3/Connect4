@@ -4,14 +4,15 @@ namespace Connect4.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "El correo es obligatorio")]
-        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
-        public string? Correo { get; set; }
+        public int Id { get; set; }
 
-        [Required(ErrorMessage = "La contraseña es obligatoria")]
-        [DataType(DataType.Password)]
-        public string? Contrasena { get; set; }
+        [Required(ErrorMessage = "La cédula es obligatoria")]
+        [Range(100000000, 999999999, ErrorMessage = "La cédula debe tener 9 dígitos")]
+        public int Cedula { get; set; }
 
-        public bool Recordarme { get; set; } // opcional para checkbox "Remember me"
+        [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
+        public string Nombre { get; set; } = string.Empty;
+
+        public string Apellido { get; set; } = string.Empty;
     }
 }

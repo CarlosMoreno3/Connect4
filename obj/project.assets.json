@@ -4876,24 +4876,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\melan\\.nuget\\packages\\": {}
+    "C:\\Users\\jpbre\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
+      "projectUniqueName": "C:\\Users\\jpbre\\OneDrive\\Documents\\GitHub\\Connect4\\Connect4.csproj",
       "projectName": "Connect4",
-      "projectPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
-      "packagesPath": "C:\\Users\\melan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\obj\\",
+      "projectPath": "C:\\Users\\jpbre\\OneDrive\\Documents\\GitHub\\Connect4\\Connect4.csproj",
+      "packagesPath": "C:\\Users\\jpbre\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jpbre\\OneDrive\\Documents\\GitHub\\Connect4\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\melan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\jpbre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4911,7 +4919,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -4955,7 +4964,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

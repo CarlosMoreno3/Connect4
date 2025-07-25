@@ -1,7 +1,8 @@
-using Connect4.Models;
 using Microsoft.AspNetCore.Mvc;
+using Connect4.Models;
+using Connect4.Data;
+using System;
 using System.Linq;
-using Connect4.Data; 
 
 namespace Connect4.Controllers
 {
@@ -23,23 +24,43 @@ namespace Connect4.Controllers
         [HttpPost]
         public IActionResult Index(LoginModel model)
         {
-            /*
             if (!ModelState.IsValid)
                 return View(model);
 
-            // Buscar al usuario por correo y contraseña
-            var jugador = _context.Jugador
-                .FirstOrDefault(j => j.Correo == model.Correo && j.Contrasena == model.Contrasena);
+            var jugadorExistente = _context.Jugador.FirstOrDefault(j => j.Cedula == model.Cedula);
+            long jugadorId;
 
-            if (jugador == null)
+            if (jugadorExistente == null)
             {
-                ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos");
-                return View(model);
+                // Crear nuevo jugador si no existe
+                var nuevoJugador = new Jugador
+                {
+                    Cedula = model.Cedula,
+                    Nombre = model.Nombre,
+                    Apellido = model.Apellido
+                };
+
+                _context.Jugador.Add(nuevoJugador);
+                _context.SaveChanges();
+
+                jugadorId = nuevoJugador.Id;
+            }
+            else
+            {
+                // Validar que el nombre coincida con la cédula
+                if (!string.Equals(jugadorExistente.Nombre.Trim(), model.Nombre.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    ModelState.AddModelError("", "El nombre de usuario no corresponde con esta cédula.");
+                    return View(model);
+                }
+
+                jugadorId = jugadorExistente.Id;
             }
 
-            // Aquí podrías guardar sesión, cookie, etc.
-            // Por ahora redireccionamos a una página de bienvenida*/
-            return RedirectToAction("Index", "Home");
+            // Si usas sesión, podrías guardar el ID aquí
+            // HttpContext.Session.SetInt64("JugadorId", jugadorId);
+
+            return RedirectToAction("Index", "CargarPartida");
         }
     }
 }

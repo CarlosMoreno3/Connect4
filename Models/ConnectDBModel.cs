@@ -10,6 +10,10 @@ namespace Connect4.Models
         [Column("id")]
         public long Id { get; set; }
 
+         [Required]
+        [Column("cedula")]
+        public int Cedula { get; set; }
+
         [Required]
         [StringLength(100)]
         [Column("nombre")]
@@ -89,6 +93,8 @@ namespace Connect4.Models
         [Required]
         [Column("jugador")]
         public byte Jugador { get; set; }
+
+       
 
         [Required]
         [StringLength(1)]
