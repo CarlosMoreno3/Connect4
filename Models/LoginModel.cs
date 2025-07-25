@@ -11,8 +11,11 @@ namespace Connect4.Models
         public int Cedula { get; set; }
 
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
+        [StringLength(100, ErrorMessage = "El nombre no puede exceder los 100 caracteres")]
         public string Nombre { get; set; } = string.Empty;
 
+        
+        [StringLength(100, ErrorMessage = "El apellido no puede exceder los 100 caracteres")]
         public string Apellido { get; set; } = string.Empty;
     }
 }

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,17 +29,32 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item"></li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="CargarPartida" asp-controller="CargarPartida" asp-action="Index">Cargar Partida</a>
                         </li>
-                        <li class="nav-item"></li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Inicio de sesion</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Inicio de sesión</a>
                         </li>
                     </ul>
+
+                    <!-- Mostrar nombre de usuario a la derecha -->
+                    <div class="d-flex align-items-center">
+                        @{
+                            var jugador1Nombre = HttpContextAccessor.HttpContext.Session.GetString("Jugador1Nombre");
+                            var jugador2Nombre = HttpContextAccessor.HttpContext.Session.GetString("Jugador2Nombre");
+                            string nombreMostrar = jugador1Nombre ?? jugador2Nombre;
+
+                            if (!string.IsNullOrEmpty(nombreMostrar))
+                            {
+                                <a class="nav-link fw-semibold text-primary" asp-controller="CerrarSesion" asp-action="Index" title="Cerrar sesión">@nombreMostrar</a>
+                            }
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -49,6 +66,7 @@
             &copy; 2025 - Proyecto - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

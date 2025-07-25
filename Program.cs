@@ -6,17 +6,25 @@ using Connect4.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// 1. Agregar servicios necesarios
 builder.Services.AddControllersWithViews()
-    .AddNewtonsoftJson(); 
+    .AddNewtonsoftJson();
 
-builder.Services.AddSession(); 
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+}); //  Agrega servicio de sesión
+builder.Services.AddHttpContextAccessor(); //  Para poder acceder al HttpContext
 
+// 2. Configurar conexión a base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
+// 3. Configurar el pipeline de middlewares
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -28,12 +36,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession();
+app.UseSession(); //  Usa la sesión aquí, antes de Authorization
 
 app.UseAuthorization();
 
+// 4. Configurar rutas
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

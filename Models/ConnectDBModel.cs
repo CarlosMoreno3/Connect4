@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +12,7 @@ namespace Connect4.Models
         [Column("id")]
         public long Id { get; set; }
 
-         [Required]
+        [Required]
         [Column("cedula")]
         public int Cedula { get; set; }
 
@@ -23,6 +25,9 @@ namespace Connect4.Models
         [StringLength(100)]
         [Column("apellido")]
         public string Apellido { get; set; } = string.Empty;
+
+        [Column("numero_jugador")]
+        public byte NumeroJugador { get; set; } = 1;  // 1 o 2 según corresponda
 
         [Column("partidas_ganadas")]
         public int PartidasGanadas { get; set; } = 0;
@@ -93,8 +98,6 @@ namespace Connect4.Models
         [Required]
         [Column("jugador")]
         public byte Jugador { get; set; }
-
-       
 
         [Required]
         [StringLength(1)]
