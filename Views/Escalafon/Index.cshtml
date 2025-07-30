@@ -1,0 +1,29 @@
+@model List<Connect4.Models.Jugador>
+
+<h2>Escalafón de Jugadores</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Marcador</th>
+            <th>Ganadas</th>
+            <th>Perdidas</th>
+            <th>Empatadas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jugador in Model)
+        {
+            <tr>
+                <td>@jugador.Cedula</td>
+                <td>@jugador.Nombre</td>
+                <td>@jugador.Marcador</td>
+                <td>@jugador.PartidasGanadas</td>
+                <td>@jugador.PartidasPerdidas</td>
+                <td>@jugador.PartidasEmpatadas</td>
+            </tr>
+        }
+    </tbody>
+</table>

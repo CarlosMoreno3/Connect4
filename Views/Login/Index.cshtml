@@ -10,7 +10,7 @@
 
 <main class="form-signin d-flex justify-content-center align-items-center vh-100 bg-body-tertiary">
     <form asp-action="Index" method="post">
-        <h1 class="h3 mb-3 fw-normal">Ingreso al Juego</h1>
+        <h1 class="h3 mb-3 fw-normal">Ingresa con tu Usuario o crea uno</h1>
 
         @*  Mensaje si se acaba de cerrar sesión *@
         @if (TempData["MensajeCierreSesion"] != null)
@@ -50,7 +50,7 @@
             </div>
         }
 
-        <button class="btn btn-primary w-100 py-2" type="submit">Ingresar o Registrarse</button>
+        <button class="btn btn-primary w-100 py-2" type="submit">Iniciar Partida</button>
 
         <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2025</p>
     </form>
