@@ -12,7 +12,6 @@
     <form asp-action="Index" method="post">
         <h1 class="h3 mb-3 fw-normal">Ingresa con tu Usuario o crea uno</h1>
 
-        @*  Mensaje si se acaba de cerrar sesión *@
         @if (TempData["MensajeCierreSesion"] != null)
         {
             <div class="alert alert-success text-center">
@@ -20,7 +19,6 @@
             </div>
         }
 
-        @* ✅ Mensaje para segundo jugador *@
         @if (!string.IsNullOrEmpty(ViewBag.MensajeJugador2 as string))
         {
             <div class="alert alert-info text-center">

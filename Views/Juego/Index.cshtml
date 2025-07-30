@@ -12,8 +12,8 @@
     var columnas = Model.Columnas;
     string nombreGanador = Model.Winner == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.Winner == 2 ? Model.NombreJugador2 ?? "Jugador 2" : "Empate";}
     <div class="d-flex flex-column align-items-center justify-content-center bg-light">
-        <p>Turno del jugador: @Model.JugadorActual</p>
         <p>Jugador 1: @Model.NombreJugador1 / Jugador 2: @Model.NombreJugador2 </p>
+        <p>Turno del jugador: @(Model.JugadorActual == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.NombreJugador2 ?? "Jugador 2")</p>
         <form asp-action="Reset" method="post">
             <button type="submit" class="btn btn-primary mb-3">Reiniciar Partida</button>
         </form>

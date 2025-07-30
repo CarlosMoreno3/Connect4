@@ -39,8 +39,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Escalafon" asp-action="Index">Escalafon</a>
                         </li>
                     </ul>
-
-                    <!-- Mostrar nombre de usuario a la derecha -->
                     <div class="d-flex align-items-center">
                         @{
                             var jugador1Nombre = HttpContextAccessor.HttpContext.Session.GetString("Jugador1Nombre");
