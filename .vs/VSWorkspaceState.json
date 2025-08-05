@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Data",
-    "\\Models",
-    "\\Views",
-    "\\Views\\Shared"
+    ""
   ],
-  "SelectedNode": "\\Connect4.sql",
+  "SelectedNode": "\\Juego.sln",
   "PreviewInSolutionExplorer": false
 }

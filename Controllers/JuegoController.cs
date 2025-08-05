@@ -9,22 +9,42 @@ public class JuegoController : Controller
     private const string SessionKey = "Juego";
     private readonly ApplicationDbContext _context;
 
+
     public JuegoController(ApplicationDbContext context)
     {
         _context = context;
     }
 
-    public IActionResult Index(int? id, bool showModal = false)
+    public IActionResult Index(int? IdPartida, bool showModal = false)
     {
-        Juego juego;
+        Juego juego = new();
 
-        if (id.HasValue)
+        if (IdPartida.HasValue)
         {
             juego = Abrir();
+
+            JugadoresEnPartida jugadoresEnPartida = new()
+            {
+                NombreJugador1 = juego.NombreJugador1,
+                NombreJugador2 = juego.NombreJugador2,
+                TurnoActual = juego.JugadorActual,
+                IdJugador1 = juego.IdJugador1,
+                IdJugador2 = juego.IdJugador2
+            };
+            ViewBag.JugadoresEnPartida = jugadoresEnPartida;
+
         }
         else
         {
-            juego = Abrir();
+            List<JugadoresJuego> jugadores = [.. _context.Jugador
+                .Select(j => new JugadoresJuego
+                {
+                    Id = j.Id,
+                    Nombre = j.Nombre
+                })];
+
+            ViewBag.JugadoresDisponibles = jugadores;
+            //juego = Abrir();
         }
 
         ViewBag.ShowModal = showModal;
@@ -48,24 +68,53 @@ public class JuegoController : Controller
     }
 
     [HttpPost]
-    [Route("Juego/InsertarFicha/{id}")]
-    public IActionResult InsertarFicha(int id, int columna)
+    [Route("Juego/IniciarJuego")]
+    public IActionResult IniciarJuego(int jugadorSeleccionado1, int jugadorSeleccionado2)
+    {
+        try
+        {
+            Partida partida = new()
+            {
+                Jugador1Id = jugadorSeleccionado1,
+                Jugador2Id = jugadorSeleccionado2,
+                FechaCreacion = DateTime.Now,
+                TurnoActual = 1 // Comienza con el jugador 1
+            };
+
+            _context.Partidas.Add(partida);
+            var result = _context.SaveChanges();
+            Juego juego = CargarJuegoDesdeBD(partida.Id);
+
+            Guardar(juego);
+
+            return RedirectToAction("Index", new { IdPartida = partida.Id });
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    [HttpPost]
+    [Route("Juego/InsertarFicha")]
+    public IActionResult InsertarFicha(int IdPartida, int columna)
     {
         var partida = _context.Partidas
             .Include(p => p.Movimientos)
             .Include(p => p.Jugador1)
             .Include(p => p.Jugador2)
-            .FirstOrDefault(p => p.Id == id);
+            .FirstOrDefault(p => p.Id == IdPartida);
 
         if (partida == null || partida.Estado == "finalizada")
-            return RedirectToAction("Index", new { id });
+            return RedirectToAction("Index", new { IdPartida });
 
-        var juego = CargarJuegoDesdeBD(id);
+        var juego = CargarJuegoDesdeBD(IdPartida);
         byte jugadorQueHaceMovimiento = (byte)juego.JugadorActual;
 
         int fila = juego.InsertarFicha(columna);
         if (fila == -1)
-            return RedirectToAction("Index", new { id });
+            return RedirectToAction("Index", new { IdPartida });
 
         Guardar(juego);
         partida.TurnoActual = (byte)juego.JugadorActual;
@@ -113,22 +162,38 @@ public class JuegoController : Controller
         }
 
         _context.SaveChanges();
-        return RedirectToAction("Index", new { id, showModal = juego.GameOver });
+        return RedirectToAction("Index", new { IdPartida, showModal = juego.GameOver });
     }
 
     [HttpPost]
-    public IActionResult Reset()
+    public IActionResult Reset(int IdJugadorEnPartida1Reset, int IdJugadorEnPartida2Reset)
     {
-        var juego = new Juego();
+        Partida partida = new()
+        {
+            Jugador1Id = IdJugadorEnPartida1Reset,
+            Jugador2Id = IdJugadorEnPartida2Reset,
+            FechaCreacion = DateTime.Now,
+            TurnoActual = 1 // Comienza con el jugador 1
+        };
+
+        _context.Partidas.Add(partida);
+        var result = _context.SaveChanges();
+        Juego juego = CargarJuegoDesdeBD(partida.Id);
+
         Guardar(juego);
-        return RedirectToAction("Index");
+        juego = Abrir();
+
+        return RedirectToAction("Index", new { IdPartida = partida.Id });
+        //var juego = new Juego();
+        //Guardar(juego);
+        //return RedirectToAction("Index");
     }
 
     public IActionResult Continuar(int id)
     {
         var juego = CargarJuegoDesdeBD(id);
         Guardar(juego);
-        return RedirectToAction("Index", new { id = juego.IdPartida });
+        return RedirectToAction("Index", new { juego.IdPartida });
     }
 
     [HttpGet]
@@ -156,7 +221,9 @@ public class JuegoController : Controller
             IdPartida = partida.Id,
             NombreJugador1 = partida.Jugador1?.Nombre ?? "Desconocido",
             NombreJugador2 = partida.Jugador2?.Nombre ?? "Desconocido",
-            JugadorActual = partida.TurnoActual
+            JugadorActual = partida.TurnoActual,
+            IdJugador1 = partida.Jugador1Id,
+            IdJugador2 = partida.Jugador2Id,
         };
 
         if (partida.Movimientos != null)

@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj": {}
+    "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj": {
+    "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
+        "projectUniqueName": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj",
         "projectName": "Connect4",
-        "projectPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\Connect4.csproj",
-        "packagesPath": "C:\\Users\\melan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\melan\\OneDrive\\ETC\\GitHub\\Connect4\\obj\\",
+        "projectPath": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\Connect4.csproj",
+        "packagesPath": "C:\\Users\\cadam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cadam\\Desktop\\2025-05-13\\Connect4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\melan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\cadam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

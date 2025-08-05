@@ -1,3 +1,4 @@
+@using Connect4.Models
 @model Juego
 @{
     ViewData["Title"] = "Connect 4";
@@ -5,18 +6,61 @@
 
     if (Model == null)
     {
-        <p>Error: Modelo nulo.</p>
+                <p>Error: Modelo nulo.</p>
         return;
     }
     var filas = Model.Filas;
     var columnas = Model.Columnas;
-    string nombreGanador = Model.Winner == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.Winner == 2 ? Model.NombreJugador2 ?? "Jugador 2" : "Empate";}
-    <div class="d-flex flex-column align-items-center justify-content-center bg-light">
+    string nombreGanador = Model.Winner == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.Winner == 2 ? Model.NombreJugador2 ?? "Jugador 2" : "Empate";
+    var jugadoresDisponibles = ViewBag.JugadoresDisponibles as List<JugadoresJuego>;
+    var jugadoresEnPartida = ViewBag.JugadoresEnPartida as JugadoresEnPartida;
+    var estiloTablero = jugadoresEnPartida == null ? "display: none" : "";
+    //style="display: none"
+}
+<div class="d-flex flex-column align-items-center justify-content-center bg-light">
+    @if (jugadoresEnPartida != null && jugadoresEnPartida.NombreJugador1 != "")
+    {
         <p>Jugador 1: @Model.NombreJugador1 / Jugador 2: @Model.NombreJugador2 </p>
         <p>Turno del jugador: @(Model.JugadorActual == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.NombreJugador2 ?? "Jugador 2")</p>
-        <form asp-action="Reset" method="post">
-            <button type="submit" class="btn btn-primary mb-3">Reiniciar Partida</button>
+    }
+@*     <p>Jugador 1: @Model.NombreJugador1 / Jugador 2: @Model.NombreJugador2 </p>
+    <p>Turno del jugador: @(Model.JugadorActual == 1 ? Model.NombreJugador1 ?? "Jugador 1" : Model.NombreJugador2 ?? "Jugador 2")</p> *@
+    
+    @if (jugadoresDisponibles != null && jugadoresDisponibles.Count > 0)
+    {
+
+        <form asp-action="IniciarJuego" method="post">
+        <label for="jugadorSeleccionado1">Seleccione un jugador:</label>
+        <select id="jugadorSeleccionado1" name="jugadorSeleccionado1" onchange="actualizarOpciones()" class="form-control">
+            <option value="">-- Seleccione --</option>
+            @foreach (var jugador in jugadoresDisponibles)
+                {
+                    <option value="@jugador.Id">@jugador.Nombre</option>
+                }
+        </select>
+
+        <label for="jugadorSeleccionado2">Seleccione un jugador:</label>
+        <select id="jugadorSeleccionado2" name="jugadorSeleccionado2" onchange="actualizarOpciones()" class="form-control">
+            <option value="">-- Seleccione --</option>
+            @foreach (var jugador in jugadoresDisponibles)
+                {
+                    <option value="@jugador.Id">@jugador.Nombre</option>
+                }
+        </select>
+            <button type="submit" class="btn btn-primary mb-3" id="btnIniciarPartida" disabled>Iniciar Juego</button>
         </form>
+        @* <button id="btnIniciarPartida" class="btn btn-primary mb-3" disabled onclick="empezarPartida()">Iniciar Juego</button> *@
+    }
+
+    <div id="tableroJuego" style="@estiloTablero">
+        <form asp-action="Reset" method="post">
+            <input type="hidden" id="IdJugadorEnPartida1Reset" name="IdJugadorEnPartida1Reset" value="@Model.IdJugador1" />
+            <input type="hidden" id="IdJugadorEnPartida2Reset" name="IdJugadorEnPartida2Reset" value="@Model.IdJugador2" />
+            <button type="submit" class="btn btn-primary mb-3" >Reiniciar Partida</button>
+        </form>
+    @*     <form asp-action="Reset" method="post">
+            <button type="submit" class="btn btn-primary mb-3">Reiniciar Partida</button>
+        </form> *@
         <table class="table table-bordered text-center shadow" style="width: auto;">
             <thead>
                 <tr>
@@ -25,10 +69,11 @@
                         var letra = (char)('A' + c);
                         bool columnaLlena = Model.ColumnaLlena(c);
                         <th>
-                            <form asp-action="InsertarFicha" asp-route-id="@Model.IdPartida" method="post">
-                                <input type="hidden" name="columna" value="@c" />
-                                <button class="btn btn-primary btn-sm" 
-                                        @(Model.GameOver || columnaLlena ? "disabled" : "")>
+                            <form asp-action="InsertarFicha" method="post">
+                                <input type="hidden" name="columna" id="columna" value="@c" />
+                                <input type="hidden" name="IdPartida" value="@Model.IdPartida" />
+                                <button class="btn btn-primary btn-sm"
+                                @(Model.GameOver || columnaLlena ? "disabled" : "")>
                                     @letra
                                 </button>
                             </form>
@@ -101,6 +146,53 @@
                 });
             </script>
         }
+
     </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function actualizarOpciones() {
+        const select1 = document.getElementById("jugadorSeleccionado1");
+        const select2 = document.getElementById("jugadorSeleccionado2");
+
+        const valor1 = select1.value;
+        const valor2 = select2.value;
+
+        // Habilita todas las opciones primero
+        for (let option of select1.options) {
+            option.disabled = false;
+        }
+        for (let option of select2.options) {
+            option.disabled = false;
+        }
+
+        // Desactiva en el segundo el valor seleccionado en el primero
+        if (valor1) {
+            for (let option of select2.options) {
+                if (option.value === valor1) {
+                    option.disabled = true;
+                }
+            }
+        }
+
+        // Desactiva en el primero el valor seleccionado en el segundo
+        if (valor2) {
+            for (let option of select1.options) {
+                if (option.value === valor2) {
+                    option.disabled = true;
+                }
+            }
+        }
+
+        if (valor1 && valor2) {
+            document.getElementById("btnIniciarPartida").disabled = false;
+        } else {
+            document.getElementById("btnIniciarPartida").disabled = true;
+        }
+    }
+
+    // Ejecutar al cargar por si ya hay algo seleccionado
+    window.onload = actualizarOpciones;
+</script>

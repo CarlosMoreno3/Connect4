@@ -9,6 +9,8 @@ public class Juego
     public int Winner { get; set; } = 0;
     public string? NombreJugador1 { get; set; }
     public string? NombreJugador2 { get; set; }
+    public long IdJugador1 { get; set; }
+    public long IdJugador2 { get; set; }
 
     public Juego()
     {
