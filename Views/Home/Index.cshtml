@@ -1,8 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Connect 4";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center mt-5">
+    <h1 class="display-3 fw-bold text-danger">¡Bienvenido a Connect 4!</h1>
+    
+    <p class="lead text-secondary mb-4">
+        Juego en donde dos jugadores compiten por alinear cuatro fichas para conseguir la victoria.
+    </p>
+
+    <div class="d-flex flex-column justify-content-center align-items-center gap-3 mb-5">
+        <div class="d-flex align-items-center">
+            <span class="me-2">El jugador 1 usará fichas de color</span>
+            <span class="rounded-circle bg-danger d-inline-block" style="width: 40px; height: 40px; box-shadow: 0 0 5px rgba(0,0,0,0.3);"></span>
+        </div>
+        <div class="d-flex align-items-center">
+            <span class="me-2">El jugador 2 usará fichas de color</span>
+            <span class="rounded-circle bg-warning d-inline-block" style="width: 40px; height: 40px; box-shadow: 0 0 5px rgba(0,0,0,0.3);"></span>
+        </div>
+    </div>
+
 </div>

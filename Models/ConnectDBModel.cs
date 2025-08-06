@@ -79,6 +79,7 @@ namespace Connect4.Models
         public DateTime? FechaFinalizacion { get; set; }
 
         public virtual Jugador? Jugador1 { get; set; }
+
         public virtual Jugador? Jugador2 { get; set; }
 
         public ICollection<Movimiento>? Movimientos { get; set; }

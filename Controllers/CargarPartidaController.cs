@@ -16,7 +16,6 @@ public class CargarPartidaController : Controller
     public IActionResult Index()
     {
         var partidas = _context.Partidas
-            .Where(p => p.Estado == "en_progreso")
             .Include(p => p.Jugador1)
             .Include(p => p.Jugador2)
             .OrderByDescending(p => p.FechaCreacion)

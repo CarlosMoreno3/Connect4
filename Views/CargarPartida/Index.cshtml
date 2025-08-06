@@ -12,6 +12,7 @@
             <th>Jugador 1</th>
             <th>Jugador 2</th>
             <th>Turno</th>
+            <th>Ganador</th>
             <th>Fecha de Creación</th>
             <th>Cargar</th>
         </tr>
@@ -22,15 +23,41 @@
         <tr>
             <td>@(partida.Jugador1 != null ? partida.Jugador1.Nombre + " " + partida.Jugador1.Apellido : "Desconocido")</td>
             <td>@(partida.Jugador2 != null ? partida.Jugador2.Nombre + " " + partida.Jugador2.Apellido : "Desconocido")</td>
-            <td>@(partida.Jugador1 != null && partida.TurnoActual == partida.Jugador1.Id
-                    ? partida.Jugador1.Nombre + " " + partida.Jugador1.Apellido
-                    : partida.Jugador2 != null && partida.TurnoActual == partida.Jugador2.Id
-                        ? partida.Jugador2.Nombre + " " + partida.Jugador2.Apellido
+            <td>
+                @(partida.TurnoActual == 1
+                    ? partida.Jugador1?.Nombre + " " + partida.Jugador1?.Apellido
+                    : partida.TurnoActual == 2
+                        ? partida.Jugador2?.Nombre + " " + partida.Jugador2?.Apellido
                         : "Desconocido")
+            </td>
+            <td>
+                @{
+                    string ganador = "Sin ganador";
+                    if (partida.Resultado == "jugador1")
+                    {
+                        ganador = partida.Jugador1?.Nombre + " " + partida.Jugador1?.Apellido;
+                    }
+                    else if (partida.Resultado == "jugador2")
+                    {
+                        ganador = partida.Jugador2?.Nombre + " " + partida.Jugador2?.Apellido;
+                    }
+                    else if (partida.Resultado == "empate")
+                    {
+                        ganador = "Empate";
+                    }
+                }
+                @ganador
             </td>
             <td>@partida.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
             <td>
-                <a asp-action="Continuar" asp-route-id="@partida.Id" class="btn btn-primary">Cargar</a>
+                @if (string.IsNullOrEmpty(partida.Resultado))
+                {
+                    <a asp-action="Continuar" asp-route-id="@partida.Id" class="btn btn-primary">Cargar</a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary" disabled>Finalizada</button>
+                }
             </td>
         </tr>
     }

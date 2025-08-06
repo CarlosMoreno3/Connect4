@@ -1,58 +1,54 @@
 @model Connect4.Models.LoginModel
-
 @{
-    ViewData["Title"] = "Iniciar Sesión";
+    ViewData["Title"] = "Registro de Jugadores";
 }
 
-@section Styles {
-    <link href="~/shared/sign-in.css" rel="stylesheet" />
-}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-<main class="form-signin d-flex justify-content-center align-items-center vh-100 bg-body-tertiary">
-    <form asp-action="Index" method="post">
-        <h1 class="h3 mb-3 fw-normal">Ingresa con tu Usuario o crea uno</h1>
+            <div class="card shadow rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Registro de Jugadores</h4>
+                </div>
 
-        @if (TempData["MensajeCierreSesion"] != null)
-        {
-            <div class="alert alert-success text-center">
-                @TempData["MensajeCierreSesion"]
+                <div class="card-body">
+                    @if (ViewBag.Mensaje != null)
+                    {
+                        <div class="alert alert-info text-center" role="alert">
+                            @ViewBag.Mensaje
+                        </div>
+                    }
+
+                    <form asp-action="Index" method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="Cedula" class="form-label">Cédula</label>
+                            <input asp-for="Cedula" class="form-control" />
+                            <span asp-validation-for="Cedula" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Nombre" class="form-label">Nombre</label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Apellido" class="form-label">Apellido</label>
+                            <input asp-for="Apellido" class="form-control" />
+                            <span asp-validation-for="Apellido" class="text-danger"></span>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        }
 
-        @if (!string.IsNullOrEmpty(ViewBag.MensajeJugador2 as string))
-        {
-            <div class="alert alert-info text-center">
-                @ViewBag.MensajeJugador2
-            </div>
-        }
-
-        <div class="form-floating mb-3">
-            <input asp-for="Cedula" class="form-control" placeholder="Cédula" />
-            <label asp-for="Cedula">Cédula</label>
-            <span asp-validation-for="Cedula" class="text-danger"></span>
         </div>
-
-        <div class="form-floating mb-3">
-            <input asp-for="Nombre" class="form-control" placeholder="Nombre de Usuario" />
-            <label asp-for="Nombre">Nombre de Usuario</label>
-            <span asp-validation-for="Nombre" class="text-danger"></span>
-        </div>
-
-        @if (ViewData.ModelState.ErrorCount > 0)
-        {
-            <div class="alert alert-danger">
-                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    <div>@error.ErrorMessage</div>
-                }
-            </div>
-        }
-
-        <button class="btn btn-primary w-100 py-2" type="submit">Iniciar Partida</button>
-
-        <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2025</p>
-    </form>
-</main>
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
