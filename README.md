@@ -56,3 +56,16 @@ En la siguiente imagen se encuentra un diagrama creado con Mermaid.
 - Asimismo, consulté cuál sería la mejor para crear el vista del tablero. https://chatgpt.com/s/t_6892517b94b48191ad0542cd198925e5
 
 - De igual manera, busqué como podría cargar una partida para usar de guia. https://chatgpt.com/s/t_68935d8526c481919aeb1e77edcac89b
+
+- Para la construcción del dropdown de los jugadores, consulté en ChatGPT como se puede hacer un dropdown con los jugadores que ya están registrados. https://chatgpt.com/share/68991ebc-9324-8013-9942-08ac649e2d78
+
+- Bloqueo de usuarios al seleccionar un usuario en el primer dropdown, no deje seleccionar el mismo en el segundo dropdown. https://chatgpt.com/share/68991eeb-0a4c-8013-9121-2e08a3dfd712
+
+- Se realiza el llamado del action del controlador de IniciarJuego para el envio de los 2 valores de los jugadores 1 y 2. https://chatgpt.com/share/68991fc6-3448-8013-91a9-8def7c355d2f
+
+- Aclaracion sobre lo que es un asp-route-id en el codigo para su desarrollo. https://chatgpt.com/share/6899201c-6790-8013-8642-e7a73c298462
+
+- Consulta sobre error en la vista relacionado al dropdown creado para la seleccion de los jugadores. https://chatgpt.com/share/6899204c-3fb0-8013-bce2-adf95af3b3a7
+
+- Consulta sobre un error donde interpretaba una respuesta de HTML como un JSON. https://chatgpt.com/share/68992188-9eb8-8013-ac09-5b607086a5d7
+
