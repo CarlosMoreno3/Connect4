@@ -56,3 +56,7 @@ En la siguiente imagen se encuentra un diagrama creado con Mermaid.
 - Asimismo, consulté cuál sería la mejor para crear el vista del tablero. https://chatgpt.com/s/t_6892517b94b48191ad0542cd198925e5
 
 - De igual manera, busqué como podría cargar una partida para usar de guia. https://chatgpt.com/s/t_68935d8526c481919aeb1e77edcac89b
+
+- Consulté a chatgpt porque primeramente había creado un registro de usuarios para el juego pero viendo bien la funcionalidad del juego y viendo que no había que hacer registro como tal le pregunté a chatgpt como reorientar eso que tenía a un modelo que el usuario pueda crear un jugador sin necesidad de hacer un registro como tal y tener que iniciar sesión, y además que estos jugadores se reflejaran a la hora de iniciar una partida en las opciones para escoger jugador. https://chatgpt.com/c/6881b0fc-e250-8007-8383-0df1ed9440f7
+
+- También le pedí ayuda a chatgpt para crear la parte del escalafón de jugadores y poder mostrar correctamente el registro de partidas de cada jugador https://chatgpt.com/c/6881b0fc-e250-8007-8383-0df1ed9440f7
