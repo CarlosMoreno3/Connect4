@@ -121,6 +121,8 @@
                             </div>
                             <div class="modal-footer">
                                 <form asp-action="Reset" method="post">
+                                    <input type="hidden" name="IdJugadorEnPartida1Reset" value="@Model.IdJugador1" />
+                                    <input type="hidden" name="IdJugadorEnPartida2Reset" value="@Model.IdJugador2" />
                                     <button type="submit" class="btn btn-primary">Jugar Nuevamente</button>
                                 </form>
                             </div>
@@ -141,6 +143,8 @@
                             </div>
                             <div class="modal-footer">
                                 <form asp-action="Reset" method="post">
+                                    <input type="hidden" name="IdJugadorEnPartida1Reset" value="@Model.IdJugador1" />
+                                    <input type="hidden" name="IdJugadorEnPartida2Reset" value="@Model.IdJugador2" />
                                     <button type="submit" class="btn btn-primary">Jugar Nuevamente</button>
                                 </form>
                             </div>
